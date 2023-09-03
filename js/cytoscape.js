@@ -91,19 +91,40 @@ function buildHTMLNode(data)
     return node.outerHTML;
 }
 
+function chooseLayout(layout = cytoscapeLayout)
+{
+    if (layout == 1)
+    {
+        return {
+            name: 'elk',
+            elk: {
+                // All options: http://www.eclipse.org/elk/reference.html
+                'algorithm': 'disco',
+                'componentLayoutAlgorithm': 'stress',
+                'stress.desiredEdgeLength': 520,
+            },
+        };
+    }
+    else if (layout == 2)
+    {
+        return {
+            name: 'cola',
+            animate: false,
+            avoidOverlap: false,
+
+            edgeLength: function (edge) { return 500; }
+        };
+    }
+
+}
+
 function buildMap(data)
 {
     try
     {
         CY = cytoscape({
             container: document.getElementById('content'),
-            layout: {
-                name: 'cola',
-                animate: false,
-                avoidOverlap: false,
-
-                edgeLength: function (edge) { return 500; }
-            },
+            layout: chooseLayout(),
             elements: data,
             style: [
                 {
@@ -121,20 +142,16 @@ function buildMap(data)
             userPanningEnabled: true
         });
 
-        CY.nodeHtmlLabel([{
-            /*
-            query: 'node', // cytoscape query selector
-            halign: 'center', // title vertical position. Can be 'left',''center, 'right'
-            valign: 'center', // title vertical position. Can be 'top',''center, 'bottom'
-            halignBox: 'center', // title vertical position. Can be 'left',''center, 'right'
-            valignBox: 'center', // title relative box vertical position. Can be 'top',''center, 'bottom'
-            cssClass: '', // any classes will be as attribute of <div> container for every title
-            */
-            tpl: function (data)
-            {
-                return buildHTMLNode(data);
-            }
-        }]);
+
+        if (true)
+        {
+            CY.nodeHtmlLabel([{
+                tpl: function (data)
+                {
+                    return buildHTMLNode(data);
+                }
+            }]);
+        }
 
         CY.minZoom(0.05);
         CY.maxZoom(2);
@@ -151,13 +168,7 @@ function buildMap(data)
 
 function refreshMapLayout()
 {
-    var layout = CY.layout({
-        name: 'cola',
-        animate: false,
-        avoidOverlap: false,
-        fit: false,
-        edgeLength: function (edge) { return 500; }
-    });
+    var layout = CY.layout(chooseLayout());
 
     layout.run();
 }
