@@ -144,7 +144,7 @@ async function loadMapFileFromURL(url)
 
     try
     {
-        const response = await fetch(url);
+        const response = await fetch(url, { cache: 'no-store' });
         const json = await response.json();
 
         loadMap(json);
