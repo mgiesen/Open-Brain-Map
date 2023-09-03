@@ -3,6 +3,14 @@ function saveConfig()
     localStorage.setItem('CONFIG', JSON.stringify(CONFIG));
 }
 
+function checkURL(url)
+{
+    const parsedUrl = new URL(url);
+    const mapParam = parsedUrl.searchParams.get("map");
+
+    // Jetzt können Sie die Variable `mapParam` verwenden, die den Wert des URL-Parameters `map` enthält
+}
+
 document.addEventListener('DOMContentLoaded', async () =>
 {
 
@@ -11,7 +19,15 @@ document.addEventListener('DOMContentLoaded', async () =>
         showScreenMessage("Lade Einstellungen", true);
         const chachedConfigExists = await loadConfig();
 
-        if (chachedConfigExists)
+        const currentUrl = window.location.href;
+        const parsedUrl = new URL(currentUrl);
+        const mapParam = parsedUrl.searchParams.get("map");
+
+        if (mapParam) 
+        {
+            await loadMapFileFromURL(mapParam);
+        }
+        else if (chachedConfigExists)
         {
 
             if (CONFIG.mapUrl != "")
