@@ -136,15 +136,7 @@ async function loadMapFileFromURL(url)
 
     try
     {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            mode: 'cors'
-        });
-
+        const response = await fetch(url);
         const json = await response.json();
 
         loadMap(json);
