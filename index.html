@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.85, maximum-scale=0.85, viewport-fit=cover, user-scalable=no">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BRAINMAP">
+
+  <meta name="theme-color" content="#13171e">
+
+  <link rel="apple-touch-icon" href="/custom_icon.png">
+
+  <title>BRAINMAP</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/header.css">
+  <link rel="stylesheet" type="text/css" href="css/modal.css">
+  <link rel="stylesheet" type="text/css" href="css/content.css">
+  <link rel="stylesheet" type="text/css" href="css/layers.css">
+
+  <!-- Cytoscape HTML Labels -->
+  <!-- https://github.com/cytoscape/cytoscape.js -->
+  <script src="plugins/cytoscape/cytoscape.min.js"></script>
+  
+  <!-- Cytoscape HTML Labels -->
+  <!-- https://github.com/kaluginserg/cytoscape-node-html-label -->
+  <script src="plugins/cytoscape/extensions/cytoscape-node-html-label/cytoscape-node-html-label.min.js"></script>
+
+  <!-- Cytoscape Cola Layout -->
+  <!-- https://github.com/cytoscape/cytoscape.js-cola -->
+  <script src="plugins/cytoscape/extensions/cola-layout/cola.min.js"></script>
+  <script src="plugins/cytoscape/extensions/cola-layout/cytoscape-cola.js"></script>
+
+</head>
+<body>
+
+  <header id="header" class="with-shadow">
+
+    <img src="images/logos/company.svg" height="30px" style="margin-left: 10px">
+    <h2>BRAINMAP</h2>
+
+    <div class="menu">
+
+      <div id="menu_map_related" class="disabled">
+        <div class="button" id="btn_collapse_nodes" onclick="toggleNodeDescription() ">
+          <img src="images/buttons/maximize.svg">
+        </div>
+        <div class="button" id="btn_node_edit_mode" onclick="toggleEditMode()">
+          <img src="images/buttons/edit.svg">
+        </div>
+        <div class="button" onclick="downloadData()">
+          <img src="images/buttons/download.svg">
+        </div>
+      </div>
+      <div class="button" onclick="showModal('modalOpenMap')">
+        <img src="images/buttons/map.svg">
+      </div>
+      
+    </div>
+
+    <div id="mapPath"></div>
+
+    <div style="flex-grow: 99"></div>
+    <img class="hidden" src="images/user.png" height="30px" style="margin-right: 30px;">
+  </header>
+
+  <div id="container">
+
+    <div id="modal-background">
+      
+      <div class="modal" id="modalOpenMap">
+        <span class="close" onclick="closeModal()">&#10006;</span>
+        <h2 class="title">Map öffnen</h2>
+        
+        <div class="HStack" style="gap: 10px">
+          <div class="image-button" onclick="showModal('modalOpenMapFromURL')">
+            <img src="images/buttons/web.svg" height="50px">
+            <p>Aus<br>Internet</p>
+          </div>
+          <div class="image-button" onclick="loadMapFromFilesystem()">
+            <img src="images/buttons/storage.svg" height="50px">
+            <p>Von<br>Speicher</p>
+          </div>
+          <div class="image-button" onclick="openMapFromExample()">
+            <img src="images/buttons/example.svg" height="50px">
+            <p>Aus<br>Beispiel</p>
+          </div>
+          <div class="image-button" onclick="createNewMap()">
+            <img src="images/buttons/new.svg" height="50px">
+            <p>Neu<br>Erstellen</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal" id="modalOpenMapFromURL">
+        <span class="close" onclick="closeModal()">&#10006;</span>
+        <h2 class="title">Map von URL abrufen</h2>
+        <input id="textbox_map_from_url" type="text" placeholder="https://www.github.com/mgiesen/brainmaps/default.json" style="width: 100%; margin-bottom: 10px">
+        <button onclick="openMapFromURL()">Ok</button>
+      </div>
+
+      <div class="modal" id="modalEditNode">
+        <span class="close" onclick="closeModal()">&#10006;</span>
+        <h2 class="title">Details</h2>
+
+        <p class="label">Titel</p>
+        <input type="text" name="title">
+
+        <p class="label">Beschreibung</p>
+        <input type="text" name="description">
+
+        <p class="label">Allgemeiner Link</p>
+        <input type="text" name="link">
+
+        <p class="label">YouTube Link</p>
+        <input type="text" name="youtube">
+
+        <p class="label">Hintergrundbild</p>
+        <input type="text" name="background">
+
+        <button id="btn_apply_node_details" style="margin-top: 10px; padding: 10px; width: 100%">Übernehmen</button>
+
+      </div>
+
+    </div>
+
+    <div id="content_status" class="">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      <p></p>
+    </div>
+
+    <div id="content"></div>
+  </div>
+
+  <script src="js/variables.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cytoscape.js"></script>
+  <script src="js/header.js"></script>
+
+</body>
+</html>

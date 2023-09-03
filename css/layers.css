@@ -1,0 +1,15 @@
+#content {
+	z-index: 1;
+}
+
+#content_status {
+	z-index: 2;
+}
+
+#header {
+	z-index: 1000;
+}
+
+#modal-background {
+	z-index: 9999;
+}

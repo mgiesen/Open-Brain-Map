@@ -1,0 +1,111 @@
+#modal-background {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	max-height: 90%;
+	min-width: 350px;
+	padding: 35px 35px 35px 35px;
+	color: black;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 15px;
+	overflow: hidden;
+	cursor: default;
+	box-sizing: border-box;
+}
+
+.modal .close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	line-height: 16px;
+	font-size: 16px;
+}
+
+.modal .title {
+	margin-top: 0px;
+}
+
+.modal p {
+	margin: 0;
+}
+
+.modal .label {
+	font-size: 70%;
+	color: gray;
+}
+
+.modal .content {
+	position: relative;
+	margin-top: 3px;
+	border-radius: 5px;
+	padding: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(220, 220, 220);
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.modal input[type="text"] {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+#modal-background .modal .close:hover,
+#modal-background .modal .close:focus {
+	color: darkgray;
+	cursor: pointer;
+	transform: rotate(360deg);
+}
+
+.modal .image-button {
+	position: relative;
+	margin-top: 3px;
+	border-radius: 5px;
+	padding: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(220, 220, 220);
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 8px;
+	font-size: 12px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.modal .image-button:hover {
+	background-color: rgb(235, 235, 235);
+}
+
+.url_example {
+	padding: 3px;
+	background-color: #4db2ff;
+	border: 1px solid gray;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.url_example:hover {
+	background-color: rgb(220, 220, 220);
+}

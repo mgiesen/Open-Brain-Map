@@ -1,0 +1,448 @@
+{
+	"nodes": [
+		{
+			"data": {
+				"id": "BASE-NODE",
+				"label": "Programmieren",
+				"description": "Programmieren ist das Erstellen von Anweisungen für Computer, um Aufgaben zu erledigen.",
+				"youtube": "",
+				"link": "",
+				"background": "https://cdn.pixabay.com/photo/2016/11/19/22/52/coding-1841550_1280.jpg"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a840064",
+				"label": "IDE",
+				"description": "IDE ist eine Software mit Code-Editor, Compiler, Debugger und anderen Tools, um die Softwareentwicklung zu erleichtern.",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a84237c",
+				"label": "Visual Studio",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a843afd",
+				"label": "Visual Studio Code",
+				"description": "",
+				"youtube": "https://www.youtube.com/watch?v=KMxo3T_MTvY",
+				"link": "",
+				"background": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a849ecc",
+				"label": "Sprachen",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a84ca69",
+				"label": "C++",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a923c87",
+				"label": "OnlineGDB",
+				"description": "Online C++ Kompiler und Debugger",
+				"youtube": "",
+				"link": "https://www.onlinegdb.com",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8b6f0a",
+				"label": "CMake",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": "https://cmake.org/wp-content/uploads/2018/11/cmake_logo_slider.png"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a85c33c",
+				"label": "Nützliche Plugins",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a86452e",
+				"label": "Live Server",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer",
+				"background": "https://ritwickdey.gallerycdn.vsassets.io/extensions/ritwickdey/liveserver/5.7.9/1661914858952/Microsoft.VisualStudio.Services.Icons.Default"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a872c2d",
+				"label": "Markdown Preview Enhanced",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced",
+				"background": "https://cdn.vsassets.io/v/M226_20230814.3/_content/Header/default_icon_128.png"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a87c131",
+				"label": "Markdown Preview Mermaid Support",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid",
+				"background": "https://bierner.gallerycdn.vsassets.io/extensions/bierner/markdown-mermaid/1.19.0/1687388291884/Microsoft.VisualStudio.Services.Icons.Default"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a883a9b",
+				"label": "Prettier - Code formatter",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode",
+				"background": "https://esbenp.gallerycdn.vsassets.io/extensions/esbenp/prettier-vscode/10.1.0/1690819498575/Microsoft.VisualStudio.Services.Icons.Default"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8a0461",
+				"label": "Vcpkg",
+				"description": " Vcpkg ist ein Microsoft-Tool für einfachere Verwaltung von externen C++-Bibliotheken in Projekten.",
+				"youtube": "",
+				"link": "https://vcpkg.io/en/",
+				"background": "https://vcpkg.io/assets/mark/logo-right.svg"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8e16f1",
+				"label": "JavaScript",
+				"description": "JavaScript ist eine weit verbreitete Programmiersprache, die hauptsächlich für die Entwicklung von interaktiven und dynamischen Webseiten verwendet wird.",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8e8e23",
+				"label": "YouTube Kanäle",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8eb4d0",
+				"label": "Web Dev Simplified",
+				"description": "",
+				"youtube": "https://www.youtube.com/@WebDevSimplified",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8f0f37",
+				"label": "Fireship",
+				"description": "",
+				"youtube": "https://www.youtube.com/@Fireship/videos",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a8fe22e",
+				"label": "HTML/CSS",
+				"description": "HTML (Hypertext Markup Language) ist eine Auszeichnungssprache, die zur Strukturierung von Webinhalten verwendet wird. CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die das Aussehen und Layout von HTML-Dokumenten gestaltet.",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a900e64",
+				"label": "YouTube Kanäle",
+				"description": "",
+				"youtube": "",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a9055be",
+				"label": "Hyperplexed",
+				"description": "",
+				"youtube": "https://www.youtube.com/@Hyperplexed",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a90beb1",
+				"label": "Kevin Powell",
+				"description": "",
+				"youtube": "https://www.youtube.com/@KevinPowell",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a930f67",
+				"label": "Svg Preview",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=SimonSiefke.svg-preview",
+				"background": "https://simonsiefke.gallerycdn.vsassets.io/extensions/simonsiefke/svg-preview/2.8.3/1581688879196/Microsoft.VisualStudio.Services.Icons.Default"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a937e88",
+				"label": "Thunder Client",
+				"description": "",
+				"youtube": "",
+				"link": "https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client",
+				"background": "https://rangav.gallerycdn.vsassets.io/extensions/rangav/vscode-thunder-client/2.11.1/1693564097687/Microsoft.VisualStudio.Services.Icons.Default"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a94b2f8",
+				"label": "Markdown",
+				"description": "Markdown ist eine Auszeichnungssprache zur einfachen Formatierung von Text, oft für Webinhalte verwendet.",
+				"youtube": "https://www.youtube.com/watch?v=_PPWWRV6gbA",
+				"link": "",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a95a768",
+				"label": "Mermaid",
+				"description": "Mermaid ist eine Text-basierte Sprache für Diagramme.",
+				"youtube": "",
+				"link": "https://mermaid.js.org",
+				"background": "https://raw.githubusercontent.com/mermaid-js/mermaid/develop/docs/public/favicon.svg"
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a9a5d67",
+				"label": "Git",
+				"description": "Git ist ein verteiltes Versionskontrollsystem, das Entwicklern ermöglicht, Änderungen an Quellcode effizient zu verfolgen, zu verwalten und zu koordinieren.",
+				"youtube": "https://www.youtube.com/watch?v=HkdAHXoRtos",
+				"link": "https://git-scm.com",
+				"background": ""
+			}
+		},
+		{
+			"data": {
+				"id": "18a5a9ad9b5",
+				"label": "GitHub",
+				"description": "GitHub ist eine Webplattform, die auf Git basiert und Entwicklern die gemeinsame Zusammenarbeit an Projekten, das Verfolgen von Änderungen, das Teilen von Code und die Verwaltung von Softwareentwicklungsprojekten ermöglicht.",
+				"youtube": "",
+				"link": "https://github.com",
+				"background": ""
+			}
+		}
+	],
+	"edges": [
+		{
+			"data": {
+				"source": "BASE-NODE",
+				"target": "18a5a840064"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a840064",
+				"target": "18a5a84237c"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a840064",
+				"target": "18a5a843afd"
+			}
+		},
+		{
+			"data": {
+				"source": "BASE-NODE",
+				"target": "18a5a849ecc"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a849ecc",
+				"target": "18a5a84ca69"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a84ca69",
+				"target": "18a5a923c87"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a84ca69",
+				"target": "18a5a8b6f0a"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a843afd",
+				"target": "18a5a85c33c"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a86452e"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a872c2d"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a87c131"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a883a9b"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a84ca69",
+				"target": "18a5a8a0461"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a849ecc",
+				"target": "18a5a8e16f1"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a8e16f1",
+				"target": "18a5a8e8e23"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a8e8e23",
+				"target": "18a5a8eb4d0"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a8e8e23",
+				"target": "18a5a8f0f37"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a849ecc",
+				"target": "18a5a8fe22e"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a8fe22e",
+				"target": "18a5a900e64"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a900e64",
+				"target": "18a5a9055be"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a900e64",
+				"target": "18a5a90beb1"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a930f67"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a85c33c",
+				"target": "18a5a937e88"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a849ecc",
+				"target": "18a5a94b2f8"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a94b2f8",
+				"target": "18a5a95a768"
+			}
+		},
+		{
+			"data": {
+				"source": "BASE-NODE",
+				"target": "18a5a9a5d67"
+			}
+		},
+		{
+			"data": {
+				"source": "18a5a9a5d67",
+				"target": "18a5a9ad9b5"
+			}
+		}
+	]
+}
