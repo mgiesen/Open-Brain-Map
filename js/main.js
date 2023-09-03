@@ -3,14 +3,6 @@ function saveConfig()
     localStorage.setItem('CONFIG', JSON.stringify(CONFIG));
 }
 
-function checkURL(url)
-{
-    const parsedUrl = new URL(url);
-    const mapParam = parsedUrl.searchParams.get("map");
-
-    // Jetzt können Sie die Variable `mapParam` verwenden, die den Wert des URL-Parameters `map` enthält
-}
-
 document.addEventListener('DOMContentLoaded', async () =>
 {
 
