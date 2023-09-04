@@ -6,4 +6,4 @@ var CONFIG = {
     mapUrl: "",
 };
 
-const cytoscapeLayout = 2;
+const cytoscapeLayout = 1;
