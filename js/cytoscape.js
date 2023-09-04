@@ -102,6 +102,7 @@ function chooseLayout(layout = cytoscapeLayout)
                 'algorithm': 'disco',
                 'componentLayoutAlgorithm': 'stress',
                 'stress.desiredEdgeLength': 520,
+                'grabbable': true,
             },
         };
     }
@@ -116,6 +117,16 @@ function chooseLayout(layout = cytoscapeLayout)
         };
     }
 
+}
+
+function CYbuildHTML()
+{
+    CY.nodeHtmlLabel([{
+        tpl: function (data)
+        {
+            return buildHTMLNode(data);
+        }
+    }]);
 }
 
 function buildMap(data)
@@ -135,6 +146,7 @@ function buildMap(data)
                         'height': 200,
                         'opacity': '0',
                         'visibility': 'hidden',
+                        'grabbable': true,
                     }
                 },
             ],
@@ -142,16 +154,7 @@ function buildMap(data)
             userPanningEnabled: true
         });
 
-
-        if (true)
-        {
-            CY.nodeHtmlLabel([{
-                tpl: function (data)
-                {
-                    return buildHTMLNode(data);
-                }
-            }]);
-        }
+        CYbuildHTML();
 
         CY.minZoom(0.05);
         CY.maxZoom(2);
@@ -169,6 +172,8 @@ function buildMap(data)
 function refreshMapLayout()
 {
     var layout = CY.layout(chooseLayout());
+
+    CYbuildHTML();
 
     layout.run();
 }
@@ -303,8 +308,6 @@ async function addNodeBeforeCurrent(nodeId)
         // Füge den neuen Knoten und die neuen Kanten hinzu
         CY.add([newNodeData, newEdge1Data, newEdge2Data]);
 
-        applyNodeHtmlLabel();
-
         // Entferne die alte Kante zwischen dem Elternknoten und dem aktuellen Knoten
         parentEdge.remove();
 
@@ -353,8 +356,6 @@ async function addNodeAfterCurrent(nodeId)
         // Add the new node and new edge
         CY.add([newNodeData, newEdgeData]);
 
-        applyNodeHtmlLabel();
-
         // Aktualisiere die Darstellung
         refreshMapLayout();
         toggleEditMode(true);
@@ -362,26 +363,6 @@ async function addNodeAfterCurrent(nodeId)
     };
 
     openNodeEditMode("Neuer Knoten", callback);
-
-}
-
-async function applyNodeHtmlLabel()
-{
-    return new Promise(resolve =>
-    {
-        CY.nodeHtmlLabel([{
-            tpl: function (data)
-            {
-                if (data.new)
-                {
-                    delete data.new;
-                    return buildHTMLNode(data);
-                }
-            }
-        }]);
-
-        resolve();
-    });
 
 }
 
@@ -485,7 +466,6 @@ function editNode(nodeId)
             nodeToEdit.data('background', data.backgroundInput);
             nodeToEdit.data('new', true);
 
-            applyNodeHtmlLabel();
             refreshMapLayout();
             centerOnNode(nodeId);
         }

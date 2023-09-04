@@ -72,7 +72,7 @@ function createNewMap()
         nodes: [
             {
                 data: {
-                    id: "BASE-NODE",
+                    id: generateNodeID(),
                     label: "Unbenannte Map",
                     description: "",
                     youtube: "",
@@ -94,7 +94,6 @@ function createNewMap()
 
     closeScreenMessage();
     closeModal();
-
 }
 
 function loadMap(json, pathArray)
