@@ -286,8 +286,6 @@ function editNode(nodeId)
     };
 
     openNodeEditMode("Bearbeiten", callback, nodeId);
-
-    console.log(nodeId);
 }
 
 async function addNodeAfterCurrent(nodeId)
