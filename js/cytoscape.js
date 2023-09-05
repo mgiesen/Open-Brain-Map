@@ -91,7 +91,7 @@ function buildHTMLNode(data)
     return node.outerHTML;
 }
 
-function chooseLayout(layout = cytoscapeLayout)
+function getCytoscapeLayout(layout = cytoscapeLayout)
 {
     if (layout == 1)
     {
@@ -102,7 +102,6 @@ function chooseLayout(layout = cytoscapeLayout)
                 'algorithm': 'disco',
                 'componentLayoutAlgorithm': 'stress',
                 'stress.desiredEdgeLength': 520,
-                'grabbable': true,
             },
         };
     }
@@ -119,7 +118,12 @@ function chooseLayout(layout = cytoscapeLayout)
 
 }
 
-function CYbuildHTML()
+function generateNodeID()
+{
+    return Date.now().toString(16);
+}
+
+function applyCytoscapeHTMLlabel()
 {
     CY.nodeHtmlLabel([{
         tpl: function (data)
@@ -135,7 +139,7 @@ function buildMap(data)
     {
         CY = cytoscape({
             container: document.getElementById('content'),
-            layout: chooseLayout(),
+            layout: getCytoscapeLayout(),
             elements: data,
             style: [
                 {
@@ -145,8 +149,7 @@ function buildMap(data)
                         'width': 420,
                         'height': 200,
                         'opacity': '0',
-                        'visibility': 'hidden',
-                        'grabbable': true,
+                        'visibility': 'hidden'
                     }
                 },
             ],
@@ -154,12 +157,10 @@ function buildMap(data)
             userPanningEnabled: true
         });
 
-        CYbuildHTML();
+        applyCytoscapeHTMLlabel();
 
         CY.minZoom(0.05);
         CY.maxZoom(2);
-
-        centerAndReset();
 
     } catch (error)
     {
@@ -169,29 +170,31 @@ function buildMap(data)
 
 }
 
-function refreshMapLayout()
+function refreshMapLayout(centerOnNodeId)
 {
-    var layout = CY.layout(chooseLayout());
+    const zoomLevelBeforeLayoutChange = CY.zoom();
 
-    CYbuildHTML();
+    CY.layout(getCytoscapeLayout()).run();
 
-    layout.run();
-}
+    applyCytoscapeHTMLlabel();
 
-function centerOnNode(nodeId)
-{
-    const nodeToCenter = CY.getElementById(nodeId);
-
-    if (nodeToCenter)
+    if (centerOnNodeId)
     {
-        CY.center(nodeToCenter);
+        const nodeToCenter = CY.getElementById(centerOnNodeId);
+
+        if (nodeToCenter)
+        {
+            CY.center(nodeToCenter);
+            CY.zoom(zoomLevelBeforeLayoutChange);
+            console.log("Centered", zoomLevelBeforeLayoutChange, nodeToCenter);
+        }
     }
+
 }
 
-function generateNodeID()
-{
-    return Date.now().toString(16);
-}
+// ==========================================================================
+// NODE EDIT BUTTONS (EDIT | ADD AFTER | ADD BEFORE | CUT | DELETE)
+// ==========================================================================
 
 function openNodeEditMode(title, callback, inheritNodeID = undefined)
 {
@@ -262,7 +265,73 @@ function openNodeEditMode(title, callback, inheritNodeID = undefined)
     showModal("modalEditNode");
 }
 
+function editNode(nodeId)
+{
+    const callback = function (data)
+    {
+        const nodeToEdit = CY.getElementById(nodeId);
 
+        if (nodeToEdit)
+        {
+            nodeToEdit.data('label', data.titleInput);
+            nodeToEdit.data('description', data.descriptionInput);
+            nodeToEdit.data('link', data.linkInput);
+            nodeToEdit.data('youtube', data.youtubeInput);
+            nodeToEdit.data('background', data.backgroundInput);
+            nodeToEdit.data('new', true);
+
+            refreshMapLayout(nodeId);
+        }
+    };
+
+    openNodeEditMode("Bearbeiten", callback, nodeId);
+
+    console.log(nodeId);
+}
+
+async function addNodeAfterCurrent(nodeId)
+{
+
+    const callback = function (data)
+    {
+        // Find the current node
+        const currentNode = CY.getElementById(nodeId);
+
+        // Create the data for the new node
+        const newId = generateNodeID(); // Unique ID
+        const newNodeData = {
+            group: 'nodes',
+            data: {
+                id: newId,
+                label: data.titleInput,
+                description: data.descriptionInput,
+                youtube: data.youtubeInput,
+                link: data.linkInput,
+                background: data.backgroundInput,
+                new: true
+            },
+        };
+
+        // Create the data for the new edge from current node to new node
+        const newEdgeData = {
+            group: 'edges',
+            data: {
+                source: currentNode.id(),
+                target: newId
+            },
+        };
+
+        // Add the new node and new edge
+        CY.add([newNodeData, newEdgeData]);
+
+        // Aktualisiere die Darstellung
+        refreshMapLayout(newId);
+        toggleEditMode(true);
+    };
+
+    openNodeEditMode("Neuer Knoten", callback);
+
+}
 
 async function addNodeBeforeCurrent(nodeId)
 {
@@ -312,84 +381,18 @@ async function addNodeBeforeCurrent(nodeId)
         parentEdge.remove();
 
         // Aktualisiere die Darstellung
-        refreshMapLayout();
+        refreshMapLayout(newId);
         toggleEditMode(true);
-        centerOnNode(newId);
     };
 
     openNodeEditMode("Neuer Knoten", callback);
 
 }
-
-async function addNodeAfterCurrent(nodeId)
-{
-
-    const callback = function (data)
-    {
-        // Find the current node
-        const currentNode = CY.getElementById(nodeId);
-
-        // Create the data for the new node
-        const newId = generateNodeID(); // Unique ID
-        const newNodeData = {
-            group: 'nodes',
-            data: {
-                id: newId,
-                label: data.titleInput,
-                description: data.descriptionInput,
-                youtube: data.youtubeInput,
-                link: data.linkInput,
-                background: data.backgroundInput,
-                new: true
-            },
-        };
-
-        // Create the data for the new edge from current node to new node
-        const newEdgeData = {
-            group: 'edges',
-            data: {
-                source: currentNode.id(),
-                target: newId
-            },
-        };
-
-        // Add the new node and new edge
-        CY.add([newNodeData, newEdgeData]);
-
-        // Aktualisiere die Darstellung
-        refreshMapLayout();
-        toggleEditMode(true);
-        centerOnNode(newId);
-    };
-
-    openNodeEditMode("Neuer Knoten", callback);
-
-}
-
-function removeNodeAndChildren(nodeId)
-{
-    const nodeToRemove = CY.getElementById(nodeId);
-
-    if (nodeToRemove)
-    {
-        const childEdges = nodeToRemove.connectedEdges().filter(edge => edge.source() === nodeToRemove);
-        const childNodes = childEdges.map(edge => edge.target());
-
-        // Recursively remove children nodes and their connected edges
-        childNodes.forEach(childNode =>
-        {
-            removeNodeAndChildren(childNode.id());
-        });
-
-        CY.remove(nodeToRemove); // Remove the selected node
-        refreshMapLayout();
-    }
-}
-
 
 function mergeParentWithChildren(node)
 {
     const parentEdge = node.incomers('edge')[0]; // Annahme: Ein Knoten hat nur einen Elternknoten
+
     if (parentEdge)
     {
         const parentNode = parentEdge.source();
@@ -411,11 +414,34 @@ function mergeParentWithChildren(node)
         });
 
         CY.remove(node);
+        refreshMapLayout(); //ToDO: Auf neuen Parent Knoten zentrieren
+    }
+}
+
+function removeNodeAndChildren(nodeId)
+{
+    const nodeToRemove = CY.getElementById(nodeId);
+
+    if (nodeToRemove)
+    {
+        const childEdges = nodeToRemove.connectedEdges().filter(edge => edge.source() === nodeToRemove);
+        const childNodes = childEdges.map(edge => edge.target());
+
+        // Recursively remove children nodes and their connected edges
+        childNodes.forEach(childNode =>
+        {
+            removeNodeAndChildren(childNode.id());
+        });
+
+        CY.remove(nodeToRemove);
         refreshMapLayout();
     }
 }
 
-// Beispiel für das Anbringen des Event-Listeners
+// ==========================================================================
+// REGISTER MAP CLICK AND TOUCH EVENTS
+// ==========================================================================
+
 document.addEventListener('click', function (event)
 {
     const target = event.target;
@@ -448,28 +474,6 @@ document.addEventListener('click', function (event)
         const nodeId = nodeElement.id;
         mergeParentWithChildren(CY.getElementById(nodeId));
     }
-
 });
 
-function editNode(nodeId)
-{
-    const callback = function (data)
-    {
-        const nodeToEdit = CY.getElementById(nodeId);
 
-        if (nodeToEdit)
-        {
-            nodeToEdit.data('label', data.titleInput);
-            nodeToEdit.data('description', data.descriptionInput);
-            nodeToEdit.data('link', data.linkInput);
-            nodeToEdit.data('youtube', data.youtubeInput);
-            nodeToEdit.data('background', data.backgroundInput);
-            nodeToEdit.data('new', true);
-
-            refreshMapLayout();
-            centerOnNode(nodeId);
-        }
-    };
-
-    openNodeEditMode("Bearbeiten", callback, nodeId);
-}

@@ -49,14 +49,6 @@ function toggleEditMode(foreActivation = undefined)
     });
 }
 
-function centerAndReset() 
-{
-    CY.ready(function ()
-    {
-        CY.fit();
-    });
-}
-
 function downloadData()
 {
     const { nodes, edges } = CY.json().elements;
