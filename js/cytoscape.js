@@ -180,14 +180,15 @@ function refreshMapLayout(centerOnNodeId)
 
     if (centerOnNodeId)
     {
+        /*
         const nodeToCenter = CY.getElementById(centerOnNodeId);
 
         if (nodeToCenter)
         {
             CY.center(nodeToCenter);
             CY.zoom(zoomLevelBeforeLayoutChange);
-            console.log("Centered", zoomLevelBeforeLayoutChange, nodeToCenter);
         }
+        */
     }
 
 }
