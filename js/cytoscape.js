@@ -156,28 +156,42 @@ function buildMap(data)
 
 }
 
-function refreshMapLayout(centerOnNodeId)
+function refreshMapLayout(centerOnNodeId, animate = false)
 {
     const zoomLevelBeforeLayoutChange = CY.zoom();
 
-    CY.layout(getCytoscapeLayout()).run();
-
-    applyCytoscapeHTMLlabel();
-
-    if (centerOnNodeId)
+    CY.layout(getCytoscapeLayout()).run().promiseOn('layoutstop').then(() =>
     {
-        /*
-        const nodeToCenter = CY.getElementById(centerOnNodeId);
+        applyCytoscapeHTMLlabel();
 
-        if (nodeToCenter)
+        if (centerOnNodeId)
         {
-            CY.center(nodeToCenter);
-            CY.zoom(zoomLevelBeforeLayoutChange);
-        }
-        */
-    }
+            const nodeToCenter = CY.getElementById(centerOnNodeId);
 
+            if (animate)
+            {
+                if (nodeToCenter)
+                {
+                    CY.animate({
+                        zoom: zoomLevelBeforeLayoutChange,
+                        center: {
+                            eles: nodeToCenter
+                        }
+                    }, {
+                        duration: 500
+                    });
+                }
+            }
+            else
+            {
+                CY.zoom(zoomLevelBeforeLayoutChange);
+                CY.center(nodeToCenter);
+            }
+
+        }
+    });
 }
+
 
 // ==========================================================================
 // NODE EDIT BUTTONS (EDIT | ADD AFTER | ADD BEFORE | CUT | DELETE)
@@ -324,7 +338,7 @@ async function addNodeAfterCurrent(nodeId)
         CY.add([newNodeData, newEdgeData]);
 
         // Aktualisiere die Darstellung
-        refreshMapLayout(newId);
+        refreshMapLayout(newId, true);
         toggleEditMode(true);
     };
 
@@ -380,7 +394,7 @@ async function addNodeBeforeCurrent(nodeId)
         parentEdge.remove();
 
         // Aktualisiere die Darstellung
-        refreshMapLayout(newId);
+        refreshMapLayout(newId, true);
         toggleEditMode(true);
     };
 
