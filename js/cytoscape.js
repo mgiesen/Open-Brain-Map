@@ -91,31 +91,17 @@ function buildHTMLNode(data)
     return node.outerHTML;
 }
 
-function getCytoscapeLayout(layout = cytoscapeLayout)
+function getCytoscapeLayout()
 {
-    if (layout == 1)
-    {
-        return {
-            name: 'elk',
-            elk: {
-                // All options: http://www.eclipse.org/elk/reference.html
-                'algorithm': 'disco',
-                'componentLayoutAlgorithm': 'stress',
-                'stress.desiredEdgeLength': 520,
-            },
-        };
-    }
-    else if (layout == 2)
-    {
-        return {
-            name: 'cola',
-            animate: false,
-            avoidOverlap: false,
-
-            edgeLength: function (edge) { return 500; }
-        };
-    }
-
+    return {
+        name: 'elk',
+        elk: {
+            // All options: http://www.eclipse.org/elk/reference.html
+            'algorithm': 'disco',
+            'componentLayoutAlgorithm': 'stress',
+            'stress.desiredEdgeLength': 520,
+        },
+    };
 }
 
 function generateNodeID()
