@@ -191,6 +191,7 @@ function openNodeEditMode(title, callback, inheritNodeID = undefined)
     const linkInput = document.querySelector('#modalEditNode input[name="link"]');
     const youtubeInput = document.querySelector('#modalEditNode input[name="youtube"]');
     const backgroundInput = document.querySelector('#modalEditNode input[name="background"]');
+    const nodeID = document.querySelector('#modalEditNode p[name="id"]');
 
     modalTitle.innerText = title;
 
@@ -222,8 +223,18 @@ function openNodeEditMode(title, callback, inheritNodeID = undefined)
             youtubeInput.value = "";
         }
 
-
         backgroundInput.value = node.querySelector('.nodeBg').style.backgroundImage.replace(/^url\(["']?|["']?\)$/g, '');
+
+        nodeID.innerText = "Knoten ID: " + node.id;
+        nodeID.style.cursor = "pointer";
+        nodeID.style.color = "";
+
+        nodeID.onclick = function ()
+        {
+            nodeID.innerText = "ID in Zwischenablage kopiert";
+            nodeID.style.color = "green";
+            navigator.clipboard.writeText(node.id);
+        };
     }
     else
     {
@@ -232,6 +243,7 @@ function openNodeEditMode(title, callback, inheritNodeID = undefined)
         linkInput.value = "";
         youtubeInput.value = "";
         backgroundInput.value = "";
+        nodeID.innerText = "";
     }
 
     document.getElementById("btn_apply_node_details").onclick = function ()
@@ -241,7 +253,8 @@ function openNodeEditMode(title, callback, inheritNodeID = undefined)
             descriptionInput: descriptionInput.value,
             linkInput: linkInput.value,
             youtubeInput: youtubeInput.value,
-            backgroundInput: backgroundInput.value
+            backgroundInput: backgroundInput.value,
+            id: nodeID.innerText
         };
 
         callback(formElements);
@@ -265,6 +278,7 @@ function editNode(nodeId)
             nodeToEdit.data('link', data.linkInput);
             nodeToEdit.data('youtube', data.youtubeInput);
             nodeToEdit.data('background', data.backgroundInput);
+            nodeToEdit.data('id', data.id);
             nodeToEdit.data('new', true);
 
             refreshMapLayout(nodeId);

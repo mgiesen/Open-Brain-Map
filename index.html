@@ -105,20 +105,30 @@
         <span class="close" onclick="closeModal()">&#10006;</span>
         <h2 class="title">Details</h2>
 
-        <p class="label">Titel</p>
-        <input type="text" name="title">
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div>
+            <p class="label">Titel</p>
+            <input type="text" name="title">
+          </div>
+          <div>
+            <p class="label">Beschreibung</p>
+            <input type="text" name="description">
+          </div>
+          <div>
+            <p class="label">Allgemeiner Link</p>
+            <input type="text" name="link">
+          </div>
+          <div>
+            <p class="label">YouTube Link</p>
+            <input type="text" name="youtube">
+          </div>
+          <div>
+            <p class="label">Hintergrundbild</p>
+            <input type="text" name="background">
+          </div>
+        </div>
 
-        <p class="label">Beschreibung</p>
-        <input type="text" name="description">
-
-        <p class="label">Allgemeiner Link</p>
-        <input type="text" name="link">
-
-        <p class="label">YouTube Link</p>
-        <input type="text" name="youtube">
-
-        <p class="label">Hintergrundbild</p>
-        <input type="text" name="background">
+        <p class="label" name="id" style="margin-top: 10px;"></p>
 
         <button id="btn_apply_node_details" style="margin-top: 10px; padding: 10px; width: 100%">Übernehmen</button>
 
