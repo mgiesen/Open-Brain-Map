@@ -6,7 +6,7 @@ OpenBrainMap is a versatile mind-mapping tool featuring specialized extensions f
 - General Link
 - YouTube Link
 
-Deployed as a web app on [GitHub Pages](https://mgiesen.github.io/OpenBrainMap/), OpenBrainMap is compatible with all modern web browsers across various devices. Maps can be opened from either:
+Deployed as a web app on [GitHub Pages](https://mgiesen.github.io/Open-Brain-Map/), OpenBrainMap is compatible with all modern web browsers across various devices. Maps can be opened from either:
 
 - A URL
 - Local storage
